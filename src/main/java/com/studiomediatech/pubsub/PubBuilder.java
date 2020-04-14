@@ -1,10 +1,17 @@
 package com.studiomediatech.pubsub;
 
+import java.util.function.Consumer;
+
+
 public final class PubBuilder<T> {
 
     private final String topic;
+    private T values;
 
-    private PubBuilder(String topic) {
+    private Consumer<PubBuilder<T>> sink = PubRegistry::register;
+
+    // Available to tests.
+    protected PubBuilder(String topic) {
 
         this.topic = topic;
     }
@@ -15,6 +22,16 @@ public final class PubBuilder<T> {
     }
 
 
-    public <T> void withValue(T values) {
+    public void withValue(T values) {
+
+        this.values = values;
+
+        register();
+    }
+
+
+    private void register() {
+
+        sink.accept(this);
     }
 }
