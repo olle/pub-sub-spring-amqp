@@ -12,18 +12,26 @@ solutions. Enhance your designs, by using Pub/Sub for Spring AMQP.
 Publisher
 ----------
 
-...
+The fluid Pub/Sub API makes it easy for developers to build structured message
+publishers bound to business- or data oriented events. There's no need for
+infrastructure code or complex setups.
+
+Publishing data is as easy as a _one-liner_!
+
+```java
+    PubBuilder.publishTo("author-added").withValue("William Gibson");
+```
 
 Subscribers
 -----------
 
 ```java
-    SubscriptionBuilder.subscribeTo("author-added", String.class)
+    SubBuilder.subscribeTo("author-added", String.class)
         .onEach(author -> System.out.println("Author was added: " + author));
 ```
 
 ```java
-    SubscriptionBuilder.subscribeTo("gate-opened", GateOpenedEvent.class)
+    SubBuilder.subscribeTo("gate-opened", GateOpenedEvent.class)
         .onEach(gate -> System.out.println("Opened " + gate));
 ```
 

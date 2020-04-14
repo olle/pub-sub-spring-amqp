@@ -3,20 +3,20 @@ package com.studiomediatech.pubsub;
 import java.util.function.Consumer;
 
 
-public final class SubscriptionBuilder<T> {
+public final class SubBuilder<T> {
 
     private final String topic;
     private final Class<T> type;
 
-    private SubscriptionBuilder(String topic, Class<T> type) {
+    private SubBuilder(String topic, Class<T> type) {
 
         this.topic = topic;
         this.type = type;
     }
 
-    public static <T> SubscriptionBuilder<T> subscribeTo(String topic, Class<T> type) {
+    public static <T> SubBuilder<T> subscribeTo(String topic, Class<T> type) {
 
-        return new SubscriptionBuilder<T>(topic, type);
+        return new SubBuilder<T>(topic, type);
     }
 
 
