@@ -9,7 +9,7 @@ using structured approach to event and data consumption. Ensure decoupling of
 components. Be better prepared for system evolution. Create more scalable
 solutions. Enhance your designs, by using Pub/Sub for Spring AMQP.
 
-Publishers
+Publisher
 ----------
 
 ...
@@ -17,7 +17,15 @@ Publishers
 Subscribers
 -----------
 
-...
+```java
+    SubscriptionBuilder.subscribeTo("author-added", String.class)
+        .onEach(author -> System.out.println("Author was added: " + author));
+```
+
+```java
+    SubscriptionBuilder.subscribeTo("gate-opened", GateOpenedEvent.class)
+        .onEach(gate -> System.out.println("Opened " + gate));
+```
 
 Happy hacking!
 
