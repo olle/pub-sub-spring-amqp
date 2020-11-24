@@ -33,7 +33,7 @@ public class PubBuilderApiTest {
     @Test
     void ex1() throws Exception {
 
-        PubBuilder.publishTo("author-added")
+        ChainingPubBuilder.publishTo("author-added", String.class)
             .withValue("William Gibson");
     }
 }

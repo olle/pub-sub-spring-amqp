@@ -1,6 +1,5 @@
 package com.studiomediatech.pubsub;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -22,17 +21,10 @@ class PubRegistryTest {
     @Test
     void ensureNoInstanceSetByDefault() {
 
-        var sut = new PubRegistry();
+        PubRegistry sut = new PubRegistry();
 
         assertThat(sut.instance).isNotNull();
         assertThat(sut.instance.get()).isNull();
-    }
-
-
-    @Test
-    void ensureThrowsOnRegisterWithoutSetInstance() throws Exception {
-
-        Assertions.assertThrows(IllegalStateException.class, () -> PubRegistry.register(new PubBuilder<>("foobar")));
     }
 
 
@@ -40,11 +32,11 @@ class PubRegistryTest {
     @Test
     void ensureAppliesRegisterToProvidedInstanceFromContext() throws Exception {
 
-        var instance = new PubRegistry();
+        PubRegistry instance = new PubRegistry();
         ApplicationContext applicationContext = Mockito.mock(ApplicationContext.class);
         when(applicationContext.getBean(PubRegistry.class)).thenReturn(instance);
 
-        var sut = new PubRegistry();
+        PubRegistry sut = new PubRegistry();
         sut.setApplicationContext(applicationContext);
 
         assertThat(sut.instance).isNotNull();

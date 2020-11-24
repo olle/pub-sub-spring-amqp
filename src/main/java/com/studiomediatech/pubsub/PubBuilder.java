@@ -1,37 +1,16 @@
 package com.studiomediatech.pubsub;
 
-import java.util.function.Consumer;
+public final class PubBuilder {
 
+    private final PubRegistry pubRegistry;
 
-public final class PubBuilder<T> {
+    public PubBuilder(PubRegistry pubRegistry) {
 
-    private final String topic;
-    private T values;
-
-    private Consumer<PubBuilder<T>> sink = PubRegistry::register;
-
-    // Available to tests.
-    protected PubBuilder(String topic) {
-
-        this.topic = topic;
+        this.pubRegistry = pubRegistry;
     }
 
-    public static <T> PubBuilder<T> publishTo(String topic) {
+    public <T> ChainingPubBuilder<T> publishTo(String topic, Class<T> type) {
 
-        return new PubBuilder<>(topic);
-    }
-
-
-    public void withValue(T values) {
-
-        this.values = values;
-
-        register();
-    }
-
-
-    private void register() {
-
-        sink.accept(this);
+        return ChainingPubBuilder.publishTo(topic, type).withRegistry(pubRegistry);
     }
 }

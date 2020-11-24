@@ -12,9 +12,9 @@ class PubRegistry implements ApplicationContextAware {
 
     protected static Supplier<PubRegistry> instance = () -> null;
 
-    public static <T> void register(PubBuilder<T> builder) {
+    public static <T> void register(ChainingPubBuilder<T> builder) {
 
-        var registry = instance.get();
+        PubRegistry registry = instance.get();
 
         if (registry == null) {
             throw new IllegalStateException("No registry is initialized.");
@@ -24,7 +24,7 @@ class PubRegistry implements ApplicationContextAware {
     }
 
 
-    private <T> void accept(PubBuilder<T> builder) {
+    private <T> void accept(ChainingPubBuilder<T> builder) {
 
         // TODO Auto-generated method stub
     }

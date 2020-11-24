@@ -5,6 +5,8 @@ import com.studiomediatech.pubsub.PubBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,6 +17,9 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 public class Publishing implements CommandLineRunner {
 
     private static final Logger LOG = LoggerFactory.getLogger(Publishing.class);
+
+    @Autowired
+    PubBuilder pubBuilder;
 
     public static void main(String[] args) {
 
@@ -30,7 +35,10 @@ public class Publishing implements CommandLineRunner {
 
         while (true) {
             LOG.info("Publishing authors..");
-            PubBuilder.publishTo("authors").withValue("William Gibson");
+
+            pubBuilder.publishTo("authors", String.class)
+                .withValue("William Gibson");
+
             pause();
         }
     }
