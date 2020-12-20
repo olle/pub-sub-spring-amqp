@@ -1,7 +1,8 @@
+
 .PHONY: verify
 verify:
-	mvn verify
+	./mvnw verify
 
 .PHONY: install
 install:
-	mvn install
+	./mvnw install
