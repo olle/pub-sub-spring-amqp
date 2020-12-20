@@ -1,7 +1,5 @@
 package com.studiomediatech.pubsub;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -16,24 +14,15 @@ public class PubBuilderApiTest {
     @Mock
     PubRegistry registry;
 
-    @BeforeEach
-    void setup() {
-
-        PubRegistry.instance = () -> registry;
-    }
-
-
-    @AfterEach
-    void teardown() {
-
-        PubRegistry.instance = () -> null;
-    }
-
-
     @Test
     void ex1() throws Exception {
 
+        PubRegistry.instance = () -> registry;
+
         ChainingPubBuilder.publishTo("author-added", String.class)
-            .withValue("William Gibson");
+            .withAll()
+            .from("William Gibson", "Douglas Adams");
+
+        PubRegistry.instance = () -> null;
     }
 }

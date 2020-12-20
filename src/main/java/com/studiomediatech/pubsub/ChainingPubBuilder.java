@@ -41,4 +41,17 @@ public class ChainingPubBuilder<T> {
         // TODO Auto-generated method stub
         return null;
     }
+
+
+    public ChainingPubBuilder<T> withAll() {
+
+        // TODO Auto-generated method stub
+        return this;
+    }
+
+
+    public void from(String... values) {
+
+        // TODO Auto-generated method stub
+    }
 }
