@@ -19,7 +19,7 @@ infrastructure code or complex setups.
 Publishing data is as easy as a _one-liner_!
 
 ```java
-  PubBuilder.publishTo("author-added").withValue("William Gibson");
+  pubBuilder.publishTo("author-added").withValue("William Gibson");
 ```
 
 Subscribers
@@ -29,7 +29,7 @@ Subscribing can very easily be done, with a declarative API that requires no
 setup or infrastructure code.
 
 ```java
-  SubBuilder.subscribeTo("author-added", String.class)
+  subBuilder.subscribeTo("author-added", String.class)
       .onEach(author -> System.out.println("Author was added: " + author));
 ```
 
@@ -37,7 +37,7 @@ Complex types can be used in subscriptions, and consumable data can easily be
 mapped to POJO or DTO types.
 
 ```java
-  SubBuilder.subscribeTo("gate-opened", GateOpenedEvent.class)
+  subBuilder.subscribeTo("gate-opened", GateOpenedEvent.class)
       .onEach(gate -> System.out.println("Opened " + gate));
 ```
 
